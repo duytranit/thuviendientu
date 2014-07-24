@@ -38,24 +38,43 @@
           </div>
         </form>
       </li>
+
       <li>
-        <h2><span>Archives</span></h2>
-        <ul>
-          <li><a href="#">January 2007</a></li>
-          <li><a href="#">December 2006</a></li>
-          <li><a href="#">November 2006</a></li>
-          <li><a href="#">October 2006</a></li>
-          <li><a href="#">September 2006</a></li>
-          <li><a href="#">August 2006</a></li>
-          <li><a href="#">July 2006</a></li>
-          <li><a href="#">June 2006</a></li>
-          <li><a href="#">May 2006</a></li>
-          <li><a href="#">April 2006</a></li>
-          <li><a href="#">March 2006</a></li>
-          <li><a href="#">February 2006</a></li>
-          <li><a href="#">January 2006</a></li>
-        </ul>
+        <% if user_signed_in? %>
+          <h2>
+            <span>
+              Đăng nhập
+            </span>
+          </h2>
+
+          <ul>
+            <li>
+              <strong><%= current_user.email %></strong>.
+              <br/>
+              <%= link_to 'Edit profile', edit_user_registration_path %> |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+            </li>
+          </ul>
+        <% else %>
+          <h2>
+            <span>
+              <%= link_to "Sign up", new_user_registration_path %> |
+              <%= link_to "Login", new_user_session_path %>
+            </span>
+          </h2>          
+        <% end %>
+
+        <% flash.each do |name, msg| %>
+          <ul>
+            <li>
+              <%= content_tag :div, msg, id: "flash_#{name}" %>
+            </li>
+          </ul>          
+        <% end %>              
       </li>
+
+      <br/>
+
       <li>
         <h2><span>Categories</span></h2>
         <ul>
