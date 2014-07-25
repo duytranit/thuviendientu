@@ -13,11 +13,16 @@
 
   <div class="field">
     <%= f.label :email %><br>
-    <%= f.text_field :email %>
+    <%= f.text_field :email , value: current_user.email, :disabled => true %>
   </div>
   <div class="field">
-    <%= f.label :category_id %><br>
-    <%= f.number_field :category_id %>
+    <%= f.label :category %><br>
+
+    <%=
+     @categories = Category.all
+     collection_select(:book, :category_id, @categories, :id, :title)
+    %>
+
   </div>
   <div class="field">
     <%= f.label :name %><br>

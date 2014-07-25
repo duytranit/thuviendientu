@@ -17,7 +17,10 @@
   <div id="menu">
     <ul>
       <li class="active"><%= link_to "Trang chủ", root_path %></li>
-      <li><%= link_to "Thư viện", books_path %></li>
+      <% if user_signed_in? %>
+        <li><%= link_to "Thư viện", books_path %></li>
+      <% end %>
+      <li><%= link_to "Thể loại", categories_path %></li>   
       <li><a href="#">Giới thiệu</a></li>
       <li><a href="#">Liên hệ</a></li>
     </ul>
