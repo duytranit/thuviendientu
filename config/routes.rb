@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :books
+
+  resources :categories
+
   devise_for :users
   get 'homepage/index'
 
