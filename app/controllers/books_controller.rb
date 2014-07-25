@@ -26,6 +26,8 @@ class BooksController < ApplicationController
   # POST /books.json
   def create
     @book = Book.new(book_params)
+    @book.photo = params[:book][:photo]
+    @book.save
 
     respond_to do |format|
       if @book.save
@@ -41,6 +43,7 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/1
   # PATCH/PUT /books/1.json
   def update
+    @book.photo = params[:book][:photo]
     respond_to do |format|
       if @book.update(book_params)
         format.html { redirect_to @book, notice: 'Book was successfully updated.' }
